@@ -35,9 +35,83 @@ class Program
         {
             Console.WriteLine("El texto ingresado no es un número válido.");
         }
+        
+        // EJERCICIO 2 A
+bool continuar = true;
+while (continuar)
+{
+    Console.WriteLine("Seleccione una operación:");
+    Console.WriteLine("1. Sumar");
+    Console.WriteLine("2. Restar");
+    Console.WriteLine("3. Multiplicar");
+    Console.WriteLine("4. Dividir");
+
+    string opcionStr = Console.ReadLine();
+    if (!int.TryParse(opcionStr, out int opcion))
+    {
+        Console.WriteLine("Opción inválida. Ingrese un número entre 1 y 4.");
+        continue;
+    }
+
+    Console.WriteLine("Ingrese el primer número:");
+    string num1Str = Console.ReadLine();
+
+    Console.WriteLine("Ingrese el segundo número:");
+    string num2Str = Console.ReadLine();
+
+    if (!double.TryParse(num1Str, out double num1) || !double.TryParse(num2Str, out double num2))
+    {
+        Console.WriteLine("Uno o ambos números ingresados no son válidos.");
+        continue;
+    }
+
+    double resultado = 0;
+    bool operacionValida = true;
+
+    switch (opcion)
+    {
+        case 1:
+            resultado = num1 + num2;
+            break;
+        case 2:
+            resultado = num1 - num2;
+            break;
+        case 3:
+            resultado = num1 * num2;
+            break;
+        case 4:
+            if (num2 != 0)
+            {
+                resultado = num1 / num2;
+            }
+            else
+            {
+                Console.WriteLine("Error: División por cero.");
+                operacionValida = false;
+            }
+            break;
+        default:
+            Console.WriteLine("Opción no válida.");
+            operacionValida = false;
+            break;
+    }
+
+    if (operacionValida)
+    {
+        Console.WriteLine($"El resultado es: {resultado}");
+    }
+
+    Console.WriteLine("¿Desea realizar otro cálculo? (s/n)");
+    string respuesta = Console.ReadLine();
+    if (respuesta.ToLower() != "s")
+    {
+        continuar = false;
+    }
+}
+
     
       // EJERCICIO 2 B
-Console.WriteLine("Ingrese un número:");
+        Console.WriteLine("Ingrese un número:");
 string inputText = Console.ReadLine();
 
 if (double.TryParse(inputText, out double n))
